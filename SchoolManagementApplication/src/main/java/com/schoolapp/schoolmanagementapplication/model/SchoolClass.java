@@ -12,21 +12,37 @@ import java.util.List;
 @Builder
 @EqualsAndHashCode
 @Entity
-public class Class {
+public class SchoolClass {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Version
+    private Long version;
+
     @Column
-    private int classNumber;
+    private Character classNumber;
+
+    @Column
+    private Character classLetter;
+
     @OneToOne
-    @JoinColumn(
-            name = "teacher_id",
-            referencedColumnName = "id")
     private Teacher classTeacher;
+
     @ManyToOne
     private School school;
+
     @OneToMany(
             mappedBy = "class"
     )
     private List<Student> students;
+
+    @ManyToMany
+    @JoinTable(
+            name = "class_to_subject",
+            joinColumns = @JoinColumn(name = "class_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id")
+    )
+    private List<Subject> subjects;
 }

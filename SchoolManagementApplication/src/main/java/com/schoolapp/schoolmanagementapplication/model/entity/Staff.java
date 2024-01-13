@@ -1,9 +1,8 @@
-package com.schoolapp.schoolmanagementapplication.model;
+package com.schoolapp.schoolmanagementapplication.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import javax.security.auth.Subject;
 import java.util.List;
 
 @AllArgsConstructor
@@ -13,7 +12,7 @@ import java.util.List;
 @Builder
 @EqualsAndHashCode
 @Entity
-public class Teacher {
+public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,23 +21,14 @@ public class Teacher {
     @Version
     private Long version;
 
-    @Column
-    @Enumerated(EnumType.STRING)
-    private List<Subject> taughtSubjects;
-
     @OneToOne
     private ContactData contactData;
 
     @OneToOne
     private Address address;
 
-    @OneToOne(
-            mappedBy = "classTeacher"
-    )
-    private SchoolClass ledSchoolClass;
-
     @ManyToMany(
-            mappedBy = "teachers"
+            mappedBy = "staffMembers"
     )
     private List<School> schools;
 }

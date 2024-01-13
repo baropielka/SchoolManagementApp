@@ -1,4 +1,4 @@
-package com.schoolapp.schoolmanagementapplication.model;
+package com.schoolapp.schoolmanagementapplication.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

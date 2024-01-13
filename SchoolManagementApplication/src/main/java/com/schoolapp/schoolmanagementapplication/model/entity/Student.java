@@ -1,9 +1,8 @@
-package com.schoolapp.schoolmanagementapplication.model;
+package com.schoolapp.schoolmanagementapplication.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -39,4 +38,7 @@ public class Student {
             mappedBy = "student"
     )
     private List<Mark> marks;
+
+    @ManyToOne
+    private SchoolClass schoolClass;
 }

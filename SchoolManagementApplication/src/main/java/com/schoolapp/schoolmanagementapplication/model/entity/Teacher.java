@@ -1,4 +1,4 @@
-package com.schoolapp.schoolmanagementapplication.model;
+package com.schoolapp.schoolmanagementapplication.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @EqualsAndHashCode
 @Entity
-public class Staff {
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,14 +21,24 @@ public class Staff {
     @Version
     private Long version;
 
+    @OneToMany(
+            mappedBy = "teacher"
+    )
+    private List<Subject> taughtSubjects;
+
     @OneToOne
     private ContactData contactData;
 
     @OneToOne
     private Address address;
 
+    @OneToOne(
+            mappedBy = "classTeacher"
+    )
+    private SchoolClass ledSchoolClass;
+
     @ManyToMany(
-            mappedBy = "staffMembers"
+            mappedBy = "teachers"
     )
     private List<School> schools;
 }

@@ -1,4 +1,4 @@
-package com.schoolapp.schoolmanagementapplication.model;
+package com.schoolapp.schoolmanagementapplication.model.entity;
 
 import com.schoolapp.schoolmanagementapplication.type.SubjectLevel;
 import com.schoolapp.schoolmanagementapplication.type.SubjectName;
@@ -37,4 +37,7 @@ public class Subject {
             mappedBy = "subjects"
     )
     private List<SchoolClass> classes;
+
+    @ManyToOne
+    private Teacher teacher;
 }

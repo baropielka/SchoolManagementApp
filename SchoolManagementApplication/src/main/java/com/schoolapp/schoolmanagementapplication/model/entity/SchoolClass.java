@@ -1,4 +1,4 @@
-package com.schoolapp.schoolmanagementapplication.model;
+package com.schoolapp.schoolmanagementapplication.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,7 +34,7 @@ public class SchoolClass {
     private School school;
 
     @OneToMany(
-            mappedBy = "class"
+            mappedBy = "schoolClass"
     )
     private List<Student> students;
 

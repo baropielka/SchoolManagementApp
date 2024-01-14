@@ -3,16 +3,13 @@ package com.schoolapp.schoolmanagementapplication.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-@EqualsAndHashCode
 @Entity
-public class Staff {
+public class AddressEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,14 +18,18 @@ public class Staff {
     @Version
     private Long version;
 
-    @OneToOne
-    private ContactData contactData;
+    @Column
+    private String country;
 
-    @OneToOne
-    private Address address;
+    @Column
+    private String city;
 
-    @ManyToMany(
-            mappedBy = "staffMembers"
-    )
-    private List<School> schools;
+    @Column
+    private String streetName;
+
+    @Column
+    private String streetNumber;
+
+    @Column
+    private String zipCode;
 }

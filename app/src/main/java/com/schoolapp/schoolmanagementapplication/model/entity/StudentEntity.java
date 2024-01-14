@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
-public class Student {
+public class StudentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,10 +21,10 @@ public class Student {
     private Long version;
 
     @OneToOne
-    private ContactData contactData;
+    private ContactDataEntity contactData;
 
     @OneToOne
-    private Address address;
+    private AddressEntity address;
 
     @ManyToMany
     @JoinTable(
@@ -32,13 +32,13 @@ public class Student {
             joinColumns = @JoinColumn(name = "child_id"),
             inverseJoinColumns = @JoinColumn(name = "parent_id")
     )
-    private List<Parent> parents;
+    private List<ParentEntity> parents;
 
     @OneToMany(
             mappedBy = "student"
     )
-    private List<Mark> marks;
+    private List<MarkEntity> marks;
 
     @ManyToOne
-    private SchoolClass schoolClass;
+    private ClassEntity schoolClass;
 }

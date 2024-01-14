@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @EqualsAndHashCode
 @Entity
-public class Teacher {
+public class TeacherEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,21 +24,21 @@ public class Teacher {
     @OneToMany(
             mappedBy = "teacher"
     )
-    private List<Subject> taughtSubjects;
+    private List<SubjectEntity> taughtSubjects;
 
     @OneToOne
-    private ContactData contactData;
+    private ContactDataEntity contactData;
 
     @OneToOne
-    private Address address;
+    private AddressEntity address;
 
     @OneToOne(
             mappedBy = "classTeacher"
     )
-    private SchoolClass ledSchoolClass;
+    private ClassEntity ledSchoolClass;
 
     @ManyToMany(
             mappedBy = "teachers"
     )
-    private List<School> schools;
+    private List<SchoolEntity> schools;
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @EqualsAndHashCode
 @Entity
-public class School {
+public class SchoolEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -35,15 +35,15 @@ public class School {
     private SchoolType schoolType;
 
     @OneToOne
-    private Address address;
+    private AddressEntity address;
 
     @OneToOne
-    private Teacher headTeacher;
+    private TeacherEntity headTeacher;
 
     @OneToMany(
             mappedBy = "school"
     )
-    private List<SchoolClass> schoolClasses;
+    private List<ClassEntity> schoolClasses;
 
     @ManyToMany
     @JoinTable(
@@ -51,7 +51,7 @@ public class School {
             joinColumns = @JoinColumn(name = "school_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_id")
     )
-    private List<Teacher> teachers;
+    private List<TeacherEntity> teachers;
 
     @ManyToMany
     @JoinTable(
@@ -59,5 +59,5 @@ public class School {
             joinColumns = @JoinColumn(name = "school_id"),
             inverseJoinColumns = @JoinColumn(name = "staff_id")
     )
-    private List<Staff> staffMembers;
+    private List<StaffEntity> staffMembers;
 }

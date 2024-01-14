@@ -3,15 +3,13 @@ package com.schoolapp.schoolmanagementapplication.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
 @Entity
-public class Parent {
+public class MarkEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,14 +18,18 @@ public class Parent {
     @Version
     private Long version;
 
-    @OneToOne
-    private ContactData contactData;
+    private int value;
 
-    @OneToOne
-    private Address address;
+    private int weight;
 
-    @ManyToMany(
-            mappedBy = "parents"
-    )
-    List<Student> children;
+    @ManyToOne
+    private StudentEntity student;
+
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private TeacherEntity teacher;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private SubjectEntity subject;
 }

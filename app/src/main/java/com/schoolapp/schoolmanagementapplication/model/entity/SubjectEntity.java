@@ -16,7 +16,7 @@ import static com.schoolapp.schoolmanagementapplication.type.SubjectLevel.BASIC;
 @Builder
 @EqualsAndHashCode
 @Entity
-public class Subject {
+public class SubjectEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,8 +36,8 @@ public class Subject {
     @ManyToMany(
             mappedBy = "subjects"
     )
-    private List<SchoolClass> classes;
+    private List<ClassEntity> classes;
 
     @ManyToOne
-    private Teacher teacher;
+    private TeacherEntity teacher;
 }

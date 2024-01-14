@@ -3,13 +3,15 @@ package com.schoolapp.schoolmanagementapplication.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
 @Entity
-public class Mark {
+public class ParentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,12 +20,14 @@ public class Mark {
     @Version
     private Long version;
 
-    private int value;
+    @OneToOne
+    private ContactDataEntity contactData;
 
-    private int weight;
+    @OneToOne
+    private AddressEntity address;
 
-    @ManyToOne
-    private Student student;
-
-    //TODO dodać nauczyciela wystrawiającego i przedmiot dotyczacy oceny
+    @ManyToMany(
+            mappedBy = "parents"
+    )
+    List<StudentEntity> children;
 }

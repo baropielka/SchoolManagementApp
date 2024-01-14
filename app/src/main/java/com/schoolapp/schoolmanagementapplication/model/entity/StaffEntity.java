@@ -3,15 +3,16 @@ package com.schoolapp.schoolmanagementapplication.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode
 @Entity
-public class ContactData {
+public class StaffEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,18 +21,14 @@ public class ContactData {
     @Version
     private Long version;
 
-    @Column
-    private String firstName;
+    @OneToOne
+    private ContactDataEntity contactData;
 
-    @Column
-    private String lastName;
+    @OneToOne
+    private AddressEntity address;
 
-    @Column
-    private LocalDate birthDate;
-
-    @Column
-    private String email;
-
-    @Column
-    private String phoneNumber;
+    @ManyToMany(
+            mappedBy = "staffMembers"
+    )
+    private List<SchoolEntity> schools;
 }

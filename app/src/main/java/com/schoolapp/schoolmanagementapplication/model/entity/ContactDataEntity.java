@@ -3,13 +3,15 @@ package com.schoolapp.schoolmanagementapplication.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
 @Entity
-public class Address {
+public class ContactDataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,17 +21,17 @@ public class Address {
     private Long version;
 
     @Column
-    private String country;
+    private String firstName;
 
     @Column
-    private String city;
+    private String lastName;
 
     @Column
-    private String streetName;
+    private LocalDate birthDate;
 
     @Column
-    private String streetNumber;
+    private String email;
 
     @Column
-    private String zipCode;
+    private String phoneNumber;
 }

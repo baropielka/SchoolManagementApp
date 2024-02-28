@@ -19,13 +19,9 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class StudentEntity extends AbstractEntity {
-
-    @OneToOne
-    private ContactDataEntity contactData;
 
     @OneToOne
     private AddressEntity address;
@@ -45,4 +41,62 @@ public class StudentEntity extends AbstractEntity {
 
     @ManyToOne
     private ClassEntity schoolClass;
+
+
+    public static final class StudentEntityBuilder {
+        private AddressEntity address;
+        private List<ParentEntity> parents;
+        private List<MarkEntity> marks;
+        private ClassEntity schoolClass;
+        private Long id;
+        private Long version;
+
+        private StudentEntityBuilder() {
+        }
+
+        public static StudentEntityBuilder aStudentEntity() {
+            return new StudentEntityBuilder();
+        }
+
+        public StudentEntityBuilder withAddress(AddressEntity address) {
+            this.address = address;
+            return this;
+        }
+
+        public StudentEntityBuilder withParents(List<ParentEntity> parents) {
+            this.parents = parents;
+            return this;
+        }
+
+        public StudentEntityBuilder withMarks(List<MarkEntity> marks) {
+            this.marks = marks;
+            return this;
+        }
+
+        public StudentEntityBuilder withSchoolClass(ClassEntity schoolClass) {
+            this.schoolClass = schoolClass;
+            return this;
+        }
+
+        public StudentEntityBuilder withId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public StudentEntityBuilder withVersion(Long version) {
+            this.version = version;
+            return this;
+        }
+
+        public StudentEntity build() {
+            StudentEntity studentEntity = new StudentEntity();
+            studentEntity.setAddress(address);
+            studentEntity.setParents(parents);
+            studentEntity.setMarks(marks);
+            studentEntity.setSchoolClass(schoolClass);
+            studentEntity.setId(id);
+            studentEntity.setVersion(version);
+            return studentEntity;
+        }
+    }
 }

@@ -1,0 +1,107 @@
+<section class="h-100 gradient-custom-2" style="background-color: #eee">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black mb-4">
+          <div class="card-body p-md-5 mx-md-4">
+            <div
+              class="row mb-5 d-flex justify-content-center align-items-center display-4"
+            >
+              Manage Your school details
+            </div>
+            <div class="row">
+              @if (schoolDetails) {
+                <div class="col-md-8">
+                  @if (!editMode) {
+                  <label class="form-label">Name:</label>
+                  <div class="mb-4">{{ schoolDetails.name }}</div>
+  
+                  <label class="form-label">Email:</label>
+                  <div class="mb-4">{{ schoolDetails.email }}</div>
+  
+                  <label class="form-label">Phone number:</label>
+                  <div class="mb-4">{{ schoolDetails.phoneNumber }}</div>
+  
+                  <label class="form-label">School type:</label>
+                  <div class="mb-4">{{ schoolDetails.schoolType }}</div>
+  
+                  <label class="form-label">Street:</label>
+                  <div class="mb-4">{{ schoolDetails.address.streetName }}</div>
+  
+                  <label class="form-label">Head teacher:</label>
+                  <div class="mb-4">
+                    {{ schoolDetails.headTeacher.firstName }}  {{ schoolDetails.headTeacher.lastName }}
+                  </div>
+                  } @else {
+                  <form [formGroup]="schoolDetaildForm">
+                    <div class="mb-4">
+                      <label class="form-label">Name:</label>
+                      <input formControlName="name" class="form-control" />
+                    </div>
+  
+                    <div class="mb-4">
+                      <label class="form-label">Email:</label>
+                      <input formControlName="email" class="form-control" />
+                    </div>
+  
+                    <div class="mb-4">
+                      <label class="form-label">Phone number:</label>
+                      <input formControlName="phoneNumber" class="form-control" />
+                    </div>
+  
+                    <div class="mb-4">
+                      <label class="form-label">School type:</label>
+                      <input formControlName="schoolType" class="form-control" />
+                    </div>
+  
+                    <div class="mb-4">
+                      <label class="form-label">Street:</label>
+                      <input formControlName="street" class="form-control" />
+                    </div>
+  
+                    <div class="mb-4">
+                      <label class="form-label">Head teacher:</label>
+                      <div class="row">
+                        <div class="col-6">
+                          <input
+                            formControlName="firstName"
+                            class="form-control"
+                          />
+                        </div>
+                        <div class="col-6">
+                          <input
+                            formControlName="lastName"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="pt-1 mb-5 pb-1">
+                      <button
+                        class="btn gradient-custom-2 mb-3 text-white"
+                        (click)="onSaveClick($event)"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </form>
+                  }
+                </div>
+              }
+              <div
+                class="col-md-4 d-flex align-items-start justify-content-end"
+              >
+                <a
+                  class="btn gradient-custom-2 text-white"
+                  (click)="onEditClicked()"
+                  >EDIT</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

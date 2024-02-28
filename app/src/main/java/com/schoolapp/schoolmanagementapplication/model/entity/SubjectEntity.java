@@ -19,7 +19,6 @@ import static com.schoolapp.schoolmanagementapplication.type.SubjectLevel.BASIC;
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class SubjectEntity extends AbstractEntity {
@@ -38,4 +37,62 @@ public class SubjectEntity extends AbstractEntity {
 
     @ManyToOne
     private TeacherEntity teacher;
+
+
+    public static final class SubjectEntityBuilder {
+        private SubjectName subjectName;
+        private SubjectLevel subjectLevel;
+        private List<ClassEntity> classes;
+        private TeacherEntity teacher;
+        private Long id;
+        private Long version;
+
+        private SubjectEntityBuilder() {
+        }
+
+        public static SubjectEntityBuilder aSubjectEntity() {
+            return new SubjectEntityBuilder();
+        }
+
+        public SubjectEntityBuilder withSubjectName(SubjectName subjectName) {
+            this.subjectName = subjectName;
+            return this;
+        }
+
+        public SubjectEntityBuilder withSubjectLevel(SubjectLevel subjectLevel) {
+            this.subjectLevel = subjectLevel;
+            return this;
+        }
+
+        public SubjectEntityBuilder withClasses(List<ClassEntity> classes) {
+            this.classes = classes;
+            return this;
+        }
+
+        public SubjectEntityBuilder withTeacher(TeacherEntity teacher) {
+            this.teacher = teacher;
+            return this;
+        }
+
+        public SubjectEntityBuilder withId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public SubjectEntityBuilder withVersion(Long version) {
+            this.version = version;
+            return this;
+        }
+
+        public SubjectEntity build() {
+            SubjectEntity subjectEntity = new SubjectEntity();
+            subjectEntity.setSubjectName(subjectName);
+            subjectEntity.setSubjectLevel(subjectLevel);
+            subjectEntity.setClasses(classes);
+            subjectEntity.setTeacher(teacher);
+            subjectEntity.setId(id);
+            subjectEntity.setVersion(version);
+            return subjectEntity;
+        }
+    }
 }

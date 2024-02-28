@@ -1,9 +1,11 @@
 package com.schoolapp.schoolmanagementapplication.model.entity.abstraction;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @MappedSuperclass
-public class AbstractEntity {
+@Data
+public abstract class AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
